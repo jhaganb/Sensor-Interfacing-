@@ -1,4 +1,8 @@
 # ULTRASONIC SENSOR INTERFACING
+```
+Jhagan B
+CSE - 212220040066
+```
 ## AIM:
 To measure the distance of the obstacle using ultrasonic sensor and display the value in serial monitor using Arduino UNO controller.
 ## Software required:
@@ -50,7 +54,34 @@ Distance = (Speed x Time) / 2 = (34cm/ms x 1.5ms) / 2 = 25.5cm.
 So, if the Echo pin was HIGH for 2ms (which we measure using the pulseIn() function), the distance from the sensor to the object is 34cm.
 
 ## PROGRAM:
+```
+const int trigPin = 9;
+const int echoPin = 10;
+
+long duration;
+int distance;
+void setup() {
+pinMode(trigPin, OUTPUT);
+pinMode(echoPin, INPUT);
+Serial.begin(9600);
+}
+
+void loop() 
+{
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  duration = pulseIn(echoPin, HIGH);
+  distance= duration*0.034/2;
+  Serial.print("Distance: ");
+  Serial.println(distance);
+}
+```
 ## CIRCUIT DIAGRAM:
+![272868029-0f5ce4ec-c9da-41da-b7e9-b749bf99c883](https://github.com/jhaganb/Sensor-Interfacing-/assets/63654882/8324d009-87b7-441f-adf8-5767d607e132)
 ## OUTPUT:
+![272868163-61ef7c94-9d20-431c-b2ba-192ca521e85b](https://github.com/jhaganb/Sensor-Interfacing-/assets/63654882/a3358313-1a91-40f8-bc33-25e3978027fe)
 ## RESULT:
 Thus the distance of the obstacle is measured using ultrasonic sensor and display the value in serial monitor using Arduino UNO controller.
